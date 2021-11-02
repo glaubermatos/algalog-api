@@ -7,13 +7,15 @@ import org.springframework.stereotype.Service;
 import com.algaworks.algalog.domain.model.Entrega;
 import com.algaworks.algalog.domain.model.Ocorrencia;
 
-import lombok.AllArgsConstructor;
-
-@AllArgsConstructor
 @Service
 public class RegistroOcorrenciaService {
 	
 	private BuscaEntregaService buscaEntregaService;
+	
+	public RegistroOcorrenciaService(BuscaEntregaService buscaEntregaService) {
+		super();
+		this.buscaEntregaService = buscaEntregaService;
+	}
 
 	@Transactional
 	public Ocorrencia registrar(Long entregaid, String descricao) {

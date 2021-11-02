@@ -6,14 +6,16 @@ import com.algaworks.algalog.domain.exceptions.EntidadeNaoEncontradaException;
 import com.algaworks.algalog.domain.model.Entrega;
 import com.algaworks.algalog.domain.repository.EntregaRepository;
 
-import lombok.AllArgsConstructor;
-
-@AllArgsConstructor
 @Service
 public class BuscaEntregaService {
-
+	
 	private EntregaRepository entregas;
 	
+	public BuscaEntregaService(EntregaRepository entregas) {
+		super();
+		this.entregas = entregas;
+	}
+
 	public Entrega findByIdOrError(Long entregaId) {
 		return entregas.findById(entregaId)
 				.orElseThrow(() -> new EntidadeNaoEncontradaException(String

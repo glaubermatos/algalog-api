@@ -8,13 +8,15 @@ import com.algaworks.algalog.domain.exceptions.EntidadeNaoEncontradaException;
 import com.algaworks.algalog.domain.model.Cliente;
 import com.algaworks.algalog.domain.repository.ClienteRepository;
 
-import lombok.AllArgsConstructor;
-
-@AllArgsConstructor
 @Service
 public class CadastroClienteService {
 	
 	private ClienteRepository clientes;
+	
+	public CadastroClienteService(ClienteRepository clientes) {
+		super();
+		this.clientes = clientes;
+	}
 
 	@Transactional
 	public Cliente save(Cliente cliente) {

@@ -21,9 +21,6 @@ import com.algaworks.algalog.domain.model.Entrega;
 import com.algaworks.algalog.domain.service.BuscaEntregaService;
 import com.algaworks.algalog.domain.service.RegistroOcorrenciaService;
 
-import lombok.AllArgsConstructor;
-
-@AllArgsConstructor
 @RestController
 @RequestMapping("/entregas/{entregaId}/ocorrencias")
 public class OcorrenciaController {
@@ -33,6 +30,15 @@ public class OcorrenciaController {
 	private OcorrenciaDisassembler ocorrenciaDisassembler;
 	private RegistroOcorrenciaService service;
 	
+	public OcorrenciaController(BuscaEntregaService buscaEntregaService, OcorrenciaAssembler ocorrenciaAssembler,
+			OcorrenciaDisassembler ocorrenciaDisassembler, RegistroOcorrenciaService service) {
+		super();
+		this.buscaEntregaService = buscaEntregaService;
+		this.ocorrenciaAssembler = ocorrenciaAssembler;
+		this.ocorrenciaDisassembler = ocorrenciaDisassembler;
+		this.service = service;
+	}
+
 	@PostMapping
 	@ResponseStatus(value = HttpStatus.CREATED)
 	public OcorrenciaModel create(@PathVariable Long entregaId, 

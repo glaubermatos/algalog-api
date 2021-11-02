@@ -21,9 +21,6 @@ import com.algaworks.algalog.domain.model.Cliente;
 import com.algaworks.algalog.domain.repository.ClienteRepository;
 import com.algaworks.algalog.domain.service.CadastroClienteService;
 
-import lombok.AllArgsConstructor;
-
-@AllArgsConstructor
 @RestController
 @RequestMapping("/clientes")
 public class ClienteController {
@@ -31,6 +28,12 @@ public class ClienteController {
 	private ClienteRepository clientes;
 	private CadastroClienteService service;
 	
+	public ClienteController(ClienteRepository clientes, CadastroClienteService service) {
+		super();
+		this.clientes = clientes;
+		this.service = service;
+	}
+
 	@GetMapping
 	public List<Cliente> index() { 
 		return clientes.findAll(); 

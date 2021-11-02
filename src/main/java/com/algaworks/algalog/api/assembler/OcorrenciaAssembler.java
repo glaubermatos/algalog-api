@@ -9,14 +9,16 @@ import org.springframework.stereotype.Component;
 import com.algaworks.algalog.api.model.OcorrenciaModel;
 import com.algaworks.algalog.domain.model.Ocorrencia;
 
-import lombok.AllArgsConstructor;
-
-@AllArgsConstructor
 @Component
 public class OcorrenciaAssembler {
 
 	private ModelMapper modelMapper;
 	
+	public OcorrenciaAssembler(ModelMapper modelMapper) {
+		super();
+		this.modelMapper = modelMapper;
+	}
+
 	public OcorrenciaModel toModel(Ocorrencia ocorrencia) {
 		return modelMapper.map(ocorrencia, OcorrenciaModel.class);
 	}

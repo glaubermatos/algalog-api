@@ -13,17 +13,9 @@ import javax.validation.constraints.NotBlank;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-
-@Getter
-@Setter
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 public class Ocorrencia {
 
-	@EqualsAndHashCode.Include
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -38,4 +30,38 @@ public class Ocorrencia {
 	@JsonProperty(access = Access.READ_ONLY)
 	@Column(name = "data_registro")
 	private OffsetDateTime dataRegistro;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Entrega getEntrega() {
+		return entrega;
+	}
+
+	public void setEntrega(Entrega entrega) {
+		this.entrega = entrega;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public OffsetDateTime getDataRegistro() {
+		return dataRegistro;
+	}
+
+	public void setDataRegistro(OffsetDateTime dataRegistro) {
+		this.dataRegistro = dataRegistro;
+	}
+	
+	
 }

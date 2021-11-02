@@ -23,9 +23,6 @@ import com.algaworks.algalog.domain.repository.EntregaRepository;
 import com.algaworks.algalog.domain.service.FinalizacaoEntregaService;
 import com.algaworks.algalog.domain.service.SolicitacaoEntregaService;
 
-import lombok.AllArgsConstructor;
-
-@AllArgsConstructor
 @RestController
 @RequestMapping("/entregas")
 public class EntregaController {
@@ -35,6 +32,16 @@ public class EntregaController {
 	private EntregaRepository entregas;
 	private EntregaAssembler entregaAssembler;
 	private EntregaDisassembler entregaDisassembler;
+	
+	public EntregaController(FinalizacaoEntregaService finalizacaoEntregaService, SolicitacaoEntregaService service,
+			EntregaRepository entregas, EntregaAssembler entregaAssembler, EntregaDisassembler entregaDisassembler) {
+		super();
+		this.finalizacaoEntregaService = finalizacaoEntregaService;
+		this.service = service;
+		this.entregas = entregas;
+		this.entregaAssembler = entregaAssembler;
+		this.entregaDisassembler = entregaDisassembler;
+	}
 
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)

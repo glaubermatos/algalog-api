@@ -19,9 +19,6 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import com.algaworks.algalog.domain.exceptions.EntidadeNaoEncontradaException;
 import com.algaworks.algalog.domain.exceptions.NegocioException;
 
-import lombok.AllArgsConstructor;
-
-@AllArgsConstructor
 @ControllerAdvice
 public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 	
