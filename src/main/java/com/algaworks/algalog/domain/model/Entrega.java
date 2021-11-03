@@ -71,20 +71,28 @@ public class Entrega {
 	}
 
 	public void finalizar() {
-		if (naoPodeSerFinalizada()) {
+		if (naoPodeSerFinalizadaOuCancelada()) {
 			throw new NegocioException("Esta entrega não pode ser finalizada.");
 		}
 		
 		setStatus(StatusEntrega.FINALIZADA);
 		setDataFinalizacao(OffsetDateTime.now());
 	}
+
+	public void cancelar() {
+		if (naoPodeSerFinalizadaOuCancelada()) {
+			throw new NegocioException("Esta entrega não pode ser cancelada.");
+		}
+		
+		setStatus(StatusEntrega.CANCELADA);
+	}
 	
-	public boolean podeSerFinalizada() {
+	public boolean podeSerFinalizadaOuCancelada() {
 		return StatusEntrega.PENDENTE.equals(getStatus());
 	}
 	
-	public boolean naoPodeSerFinalizada() {
-		return !podeSerFinalizada();
+	public boolean naoPodeSerFinalizadaOuCancelada() {
+		return !podeSerFinalizadaOuCancelada();
 	}
 	
 

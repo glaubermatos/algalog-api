@@ -20,6 +20,7 @@ import com.algaworks.algalog.api.assembler.EntregaDisassembler;
 import com.algaworks.algalog.api.model.EntregaModel;
 import com.algaworks.algalog.api.model.input.EntregaInput;
 import com.algaworks.algalog.domain.repository.EntregaRepository;
+import com.algaworks.algalog.domain.service.CancelamentoEntregaService;
 import com.algaworks.algalog.domain.service.FinalizacaoEntregaService;
 import com.algaworks.algalog.domain.service.SolicitacaoEntregaService;
 
@@ -28,15 +29,18 @@ import com.algaworks.algalog.domain.service.SolicitacaoEntregaService;
 public class EntregaController {
 	
 	private FinalizacaoEntregaService finalizacaoEntregaService;
+	private CancelamentoEntregaService cancelamentoEntregaService;
 	private SolicitacaoEntregaService service; 
 	private EntregaRepository entregas;
 	private EntregaAssembler entregaAssembler;
 	private EntregaDisassembler entregaDisassembler;
 	
-	public EntregaController(FinalizacaoEntregaService finalizacaoEntregaService, SolicitacaoEntregaService service,
+	public EntregaController(FinalizacaoEntregaService finalizacaoEntregaService,
+			CancelamentoEntregaService cancelamentoEntregaService, SolicitacaoEntregaService service,
 			EntregaRepository entregas, EntregaAssembler entregaAssembler, EntregaDisassembler entregaDisassembler) {
 		super();
 		this.finalizacaoEntregaService = finalizacaoEntregaService;
+		this.cancelamentoEntregaService = cancelamentoEntregaService;
 		this.service = service;
 		this.entregas = entregas;
 		this.entregaAssembler = entregaAssembler;
@@ -67,5 +71,11 @@ public class EntregaController {
 	@ResponseStatus(value = HttpStatus.NO_CONTENT)
 	public void finalizar(@PathVariable Long entregaId) {
 		finalizacaoEntregaService.finalizar(entregaId);
+	}
+	
+	@PutMapping("/{entregaId}/cancelamento")
+	@ResponseStatus(value = HttpStatus.NO_CONTENT)
+	public void cancelar(@PathVariable Long entregaId) {
+		cancelamentoEntregaService.cancelar(entregaId);
 	}
 }
